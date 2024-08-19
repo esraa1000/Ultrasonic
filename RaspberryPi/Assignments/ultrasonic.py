@@ -1,29 +1,26 @@
-# -- coding: utf-8 --
-#import adafruit_dht
-#import board
-#from gpiozero import DistanceSensor
+import adafruit_dht
+import board
+from gpiozero import DistanceSensor
 import time
 import numpy as np
 import matplotlib.pyplot as plt
 
 #Sensors Setup
-#dht_device = adafruit_dht.DHT11(board.D17)
-#ultrasonic_sensor = DistanceSensor(echo=18, trigger=17)
+dht_device = adafruit_dht.DHT11(board.D17)
+ultrasonic_sensor = DistanceSensor(echo=18, trigger=17)
 
 y1 = []
 y2 = []
 x = []
 
 #open a log file
-flog = open("Readings.txt", 'a')
+flog = open("Readings.log", 'a')
 
 for i in range(5):
     try:
         # Read temperature and humidity from the sensor
-        #temperature = dht_device.temperature
-        #distance = ultrasonic_sensor.distance
-        temperature = np.random.uniform(low=5.0, high=10.0) #for trial
-        distance = np.random.uniform(low=5.0, high=10.0) #for trial
+        temperature = dht_device.temperature
+        distance = ultrasonic_sensor.distance
         y1.append(temperature) 
         y2.append(distance)
         x.append(i+1)
